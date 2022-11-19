@@ -3,7 +3,7 @@
 
 class Contact {
    public:
-    enum fieldName { firstName, lastName, nickName, phoneNumber, DarkestSecrect, Address, END };
+    enum fieldName { firstName, lastName, nickName, phoneNumber, DarkestSecrect, END };
 
    private:
     std::string _fields[Contact::END];

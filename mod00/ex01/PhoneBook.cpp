@@ -78,7 +78,7 @@ void PhoneBook::_printContactLine(const Contact &contact, int idx, const Contact
 }
 
 void PhoneBook::_printContactsTable() const {
-    const Contact::fieldName fields[] = {Contact::Address, Contact::firstName, Contact::lastName, Contact::nickName};
+    const Contact::fieldName fields[] = {Contact::firstName, Contact::lastName, Contact::nickName};
     const int fieldCnt = sizeof(fields) / sizeof(Contact::fieldName);
 
     _printContactsTableStart(fields, fieldCnt);
