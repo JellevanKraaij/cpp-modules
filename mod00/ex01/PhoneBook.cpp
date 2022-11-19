@@ -1,6 +1,7 @@
 #include "PhoneBook.hpp"
 
 #include <iomanip>
+#include <cstdlib>
 
 PhoneBook::PhoneBook(std::istream &inputStream, std::ostream &outputStream)
     : _inputStream(inputStream), _outputStream(outputStream), _contactIdx(0) {}
