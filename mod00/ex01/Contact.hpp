@@ -13,7 +13,7 @@ class Contact {
     Contact();
     ~Contact();
 
-    const std::string &getField(const Contact::fieldName name) const;
+    std::string getField(const Contact::fieldName name) const;
     static const std::string &getFieldName(const Contact::fieldName name);
     static int getFieldCount(void);
 

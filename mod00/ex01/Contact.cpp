@@ -5,7 +5,7 @@ Contact::~Contact() {}
 
 const std::string Contact::_names[] = {"First Name", "Last Name", "Nick Name", "Phone Number", "Darkest Secret", "Address"};
 
-const std::string &Contact::getField(const Contact::fieldName name) const {
+std::string Contact::getField(const Contact::fieldName name) const {
     return (_fields[name]);
 }
 
