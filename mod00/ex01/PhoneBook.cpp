@@ -1,7 +1,7 @@
 #include "PhoneBook.hpp"
 
-#include <iomanip>
 #include <cstdlib>
+#include <iomanip>
 
 PhoneBook::PhoneBook(std::istream &inputStream, std::ostream &outputStream)
     : _inputStream(inputStream), _outputStream(outputStream), _contactIdx(0) {}
@@ -33,11 +33,11 @@ void PhoneBook::_addContact(const Contact &contact) {
 
 bool PhoneBook::_fillContact() {
     Contact contact;
-    for (int i = 0; i < contact.getFieldCount(); i++) {
+    for (int i = 0; i < Contact::getFieldCount(); i++) {
         Contact::fieldName name = static_cast<Contact::fieldName>(i);
         std::string input;
         do {
-            _outputStream << "Enter (" << contact.getFieldName(name) << "): ";
+            _outputStream << "Enter (" << Contact::getFieldName(name) << "): ";
 
             if (!std::getline(_inputStream, input))
                 return (false);
@@ -54,7 +54,7 @@ void PhoneBook::_printContactsTableStart(const Contact::fieldName names[], int n
                   << "|";
 
     for (int i = 0; i < namesCnt; i++) {
-        _outputStream << std::setw(10) << _contacts[0].getFieldName(names[i]) << "|";
+        _outputStream << std::setw(10) << Contact::getFieldName(names[i]) << "|";
     }
     _outputStream << std::endl;
 
@@ -89,7 +89,7 @@ void PhoneBook::_printContactsTable() const {
 }
 
 void PhoneBook::_printContactDetails(const Contact &contact) const {
-    for (int i = 0; i < contact.getFieldCount(); i++) {
+    for (int i = 0; i < Contact::getFieldCount(); i++) {
         {
             Contact::fieldName name = static_cast<Contact::fieldName>(i);
             ;

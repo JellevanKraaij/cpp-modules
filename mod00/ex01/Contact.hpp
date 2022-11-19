@@ -14,8 +14,8 @@ class Contact {
     ~Contact();
 
     const std::string &getField(const Contact::fieldName name) const;
-    const std::string &getFieldName(const Contact::fieldName name) const;
-    int getFieldCount(void) const;
+    static const std::string &getFieldName(const Contact::fieldName name);
+    static int getFieldCount(void);
 
     void setField(const Contact::fieldName name, const std::string &value);
 };

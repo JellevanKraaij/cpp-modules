@@ -1,6 +1,6 @@
-#include <iostream>
 #include <cstdlib>
 #include <cstring>
+#include <iostream>
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
