@@ -1,7 +1,7 @@
 NAME		=	zombies
 
 HEADERS		=	Zombie.hpp
-SRC			=	main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRC			=	main.cpp Zombie.cpp zombieHorde.cpp
 OBJ			=	$(SRC:.cpp=.o)
 
 CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98 -fsanitize=address
