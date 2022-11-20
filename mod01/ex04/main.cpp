@@ -9,22 +9,33 @@ int main(int argc, char **argv) {
         std::cerr << "incorrect parameters" << std::endl;
         return (EXIT_FAILURE);
     }
+
     std::ifstream inputFile(argv[1]);
+    if (!inputFile)
+    {
+        std::cerr << "failed to open input file" << std::endl;
+        return (EXIT_FAILURE);
+    }
     std::ofstream outputFile(((std::string)argv[1] + ".replace").c_str());
+    if (!outputFile)
+    {
+        std::cerr << "failed to open output file" << std::endl;
+        return (EXIT_FAILURE);
+    }
 
     char cBuff;
-    std::string str;
+    std::string strBuff;
     while (inputFile.get(cBuff)) {
-        if (argv[2][str.length()] == cBuff)
-            str += cBuff;
+        if (argv[2][strBuff.length()] == cBuff)
+            strBuff += cBuff;
         else {
-            outputFile << str;
-            str.clear();
+            outputFile << strBuff;
+            strBuff.clear();
             outputFile << cBuff;
         }
-        if (str.length() == std::strlen(argv[2]) && !str.empty()) {
+        if (strBuff.length() == std::strlen(argv[2]) && !strBuff.empty()) {
             outputFile << argv[3];
-            str.clear();
+            strBuff.clear();
         }
     }
 }
