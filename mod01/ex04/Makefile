@@ -1,7 +1,7 @@
-NAME		=	zombies
+NAME		=	mysed
 
-HEADERS		=	Zombie.hpp
-SRC			=	main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+HEADERS		=
+SRC			=	main.cpp
 OBJ			=	$(SRC:.cpp=.o)
 
 CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98 -fsanitize=address
@@ -21,5 +21,8 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: 	fclean all
+
+test: $(NAME)
+
 
 .PHONY:	all clean fclean re
