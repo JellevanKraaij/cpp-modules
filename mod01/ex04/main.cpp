@@ -6,19 +6,17 @@
 
 int main(int argc, char **argv) {
     if (argc != 4) {
-        std::cerr << "incorrect parameters" << std::endl;
+        std::cerr << "Usage: ./mysed 'inputFile' 'search' 'replace'" << std::endl;
         return (EXIT_FAILURE);
     }
 
     std::ifstream inputFile(argv[1]);
-    if (!inputFile)
-    {
+    if (!inputFile) {
         std::cerr << "failed to open input file" << std::endl;
         return (EXIT_FAILURE);
     }
     std::ofstream outputFile(((std::string)argv[1] + ".replace").c_str());
-    if (!outputFile)
-    {
+    if (!outputFile) {
         std::cerr << "failed to open output file" << std::endl;
         return (EXIT_FAILURE);
     }
