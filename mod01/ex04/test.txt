@@ -1,0 +1,4 @@
+This test file should not include replace in uppercase but only in lowercase example: REPLACE
+if its not then the REPLACE subject failed
+Also EPLACE, REPLAC and EPLAC still be uppercase
+surrounded by text should work aswell like testREPLACEtest should be all lowercase
