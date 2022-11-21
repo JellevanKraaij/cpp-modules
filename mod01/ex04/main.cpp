@@ -4,9 +4,9 @@
 #include <iostream>
 #include <string>
 
-int main(int argc, char **argv) {
+int main(int argc, char *argv[]) {
     if (argc != 4) {
-        std::cerr << "Usage: ./mysed 'inputFile' 'search' 'replace'" << std::endl;
+        std::cerr << "Usage: "<< argv[0] << " 'inputFile' 'search' 'replace'" << std::endl;
         return (EXIT_FAILURE);
     }
 

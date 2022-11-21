@@ -2,6 +2,12 @@
 #include <iostream>
 #include <string>
 
+#ifndef __APPLE__
+# define ALLOW_FALLTHROUGH  __attribute__((fallthrough))
+#else
+# define ALLOW_FALLTHROUGH {}
+#endif
+
 #include "Harl.hpp"
 
 int switchString(const std::string &str, const std::string lookup[], int lookupLen) {
@@ -20,7 +26,7 @@ void compain(const std::string &level) {
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        std::cerr << "Usage: ./mysed 'inputFile' 'search' 'replace'" << std::endl;
+        std::cerr << "Usage: " << argv[0] << " 'inputFile' 'search' 'replace'" << std::endl;
         return (EXIT_FAILURE);
     }
 
@@ -28,13 +34,13 @@ int main(int argc, char *argv[]) {
     switch (switchString(argv[1], lookup, 4)) {
         case 0:
             compain("DEBUG");
-            __attribute__((fallthrough));
+            ALLOW_FALLTHROUGH;
         case 1:
             compain("INFO");
-            __attribute__((fallthrough));
+            ALLOW_FALLTHROUGH;
         case 2:
             compain("WARNING");
-            __attribute__((fallthrough));
+            ALLOW_FALLTHROUGH;
         case 3:
             compain("ERROR");
             break;
