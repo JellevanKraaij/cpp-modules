@@ -10,7 +10,7 @@ const struct Harl::_mapLevels Harl::_mapLevels[Harl::_lookup_size] = {
     {.str = "ERROR", .function = Harl::error},
 };
 
-void Harl::compain(std::string level) {
+void Harl::complain(std::string level) {
     (void)level;
 
     for (int i = 0; i < _lookup_size; i++) {

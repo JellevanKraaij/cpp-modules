@@ -3,11 +3,11 @@
 
 #include "Harl.hpp"
 
-void compain(const std::string &level) {
-    std::cout << "run compain with " << level << " level:" << std::endl;
+void complain(const std::string &level) {
+    std::cout << "run complain with " << level << " level:" << std::endl;
 
     try {
-        Harl::compain(level);
+        Harl::complain(level);
     } catch (const std::invalid_argument &exception) {
         std::cout << "Harl throwed exception: " << exception.what() << std::endl;
     }
@@ -15,10 +15,10 @@ void compain(const std::string &level) {
 }
 
 int main(void) {
-    compain("invalid");
-    compain("debug");
-    compain("DEBUG");
-    compain("INFO");
-    compain("WARNING");
-    compain("ERROR");
+    complain("invalid");
+    complain("debug");
+    complain("DEBUG");
+    complain("INFO");
+    complain("WARNING");
+    complain("ERROR");
 }

@@ -16,5 +16,5 @@ class Harl {
     static void error(void);
 
    public:
-    static void compain(const std::string &level);
+    static void complain(const std::string &level);
 };

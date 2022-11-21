@@ -18,9 +18,9 @@ int switchString(const std::string &str, const std::string lookup[], int lookupL
     return (-1);
 }
 
-void compain(const std::string &level) {
+void complain(const std::string &level) {
     std::cout << "[ " << level << " ]" << std::endl;
-    Harl::compain(level);
+    Harl::complain(level);
     std::cout << std::endl;
 }
 
@@ -33,16 +33,16 @@ int main(int argc, char *argv[]) {
     static const std::string lookup[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     switch (switchString(argv[1], lookup, 4)) {
         case 0:
-            compain("DEBUG");
+            complain("DEBUG");
             ALLOW_FALLTHROUGH;
         case 1:
-            compain("INFO");
+            complain("INFO");
             ALLOW_FALLTHROUGH;
         case 2:
-            compain("WARNING");
+            complain("WARNING");
             ALLOW_FALLTHROUGH;
         case 3:
-            compain("ERROR");
+            complain("ERROR");
             break;
         default:
             std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
