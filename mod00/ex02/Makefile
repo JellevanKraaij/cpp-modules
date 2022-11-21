@@ -20,7 +20,7 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: 	fclean all
+re: fclean all
 
 test: $(NAME)
 	@bash -c "diff <(./$(NAME) | cut -c 19-) <(cat reference.log | cut -c 19-) || exit 0"
