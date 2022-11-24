@@ -26,7 +26,7 @@ void complain(const std::string &level) {
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        std::cerr << "Usage: " << argv[0] << " 'inputFile' 'search' 'replace'" << std::endl;
+        std::cerr << "Usage: " << argv[0] << " 'level'" << std::endl;
         return (EXIT_FAILURE);
     }
 
