@@ -1,7 +1,7 @@
 #include "Fixed.hpp"
 
-#include <iostream>
 #include <cmath>
+#include <iostream>
 
 Fixed::Fixed() : _value(0) {
     std::cout << "Default constructor called" << std::endl;
@@ -59,7 +59,7 @@ int Fixed::_convertToRaw(const float num) {
 }
 
 int Fixed::_convertToInt(const int raw) {
-    return (raw >> _fractBits);
+    return (raw / (1 << _fractBits));
 }
 
 float Fixed::_convertToFloat(const int raw) {
