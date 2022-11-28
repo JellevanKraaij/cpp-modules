@@ -6,8 +6,12 @@ Fixed::Fixed() : _value(0) {
     std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int num) : _value(Fixed::_convertToRaw(num)) {
-    std::cout << "Default constructor called" << std::endl;
+Fixed::Fixed(const int num) : _value(_convertToRaw(num)) {
+    std::cout << "Int constructor called" << std::endl;
+}
+
+Fixed::Fixed(const float num) : _value(Fixed::_convertToRaw(num)) {
+    std::cout << "Float constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &copy) {
@@ -26,8 +30,7 @@ Fixed &Fixed::operator=(const Fixed &assign) {
 }
 
 std::ostream &operator<<(std::ostream &os, const Fixed &cl) {
-    os << cl.toInt() << std::endl; //TODO: fix
-    return (os);
+    return (os << cl.toFloat());
 }
 
 int Fixed::getRawBits(void) const {
@@ -39,12 +42,25 @@ void Fixed::setRawBits(const int raw) {
 }
 
 int Fixed::toInt(void) const {
-	return (Fixed::_convertToInt(_value));
+    return (Fixed::_convertToInt(_value));
 }
 
-int Fixed::_convertToRaw(const int val) {
-    return (val << _fractBits);
+float Fixed::toFloat(void) const {
+    return (Fixed::_convertToFloat(_value));
 }
-int Fixed::_convertToInt(const int val) {
-    return (val >> _fractBits);
+
+int Fixed::_convertToRaw(const int num) {
+    return (num << _fractBits);
+}
+
+int Fixed::_convertToRaw(const float num) {
+    return (num * (float)(1 << _fractBits) + 0.5f);
+}
+
+int Fixed::_convertToInt(const int raw) {
+    return (raw >> _fractBits);
+}
+
+float Fixed::_convertToFloat(const int raw) {
+    return ((float)raw / (float)(1 << _fractBits));
 }
