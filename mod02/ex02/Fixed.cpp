@@ -101,12 +101,12 @@ Fixed &Fixed::operator++() {
 
 Fixed Fixed::operator++(int) {
     Fixed old = *this;
-    _value--;
+    _value++;
     return (old);
 }
 
 Fixed &Fixed::operator--() {
-    _value++;
+    _value--;
     return (*this);
 }
 
