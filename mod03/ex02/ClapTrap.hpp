@@ -14,10 +14,12 @@ class ClapTrap {
     void takeDamage(unsigned int amount);
     void beRepaired(unsigned int amount);
 
-   protected:
-    std::string _name;
+   private:
     unsigned int _health;
     unsigned int _energy;
     unsigned int _damage;
+
+   protected:
+    std::string _name;
     ClapTrap(const std::string &name, unsigned int health, unsigned int energy, unsigned int damage);
 };

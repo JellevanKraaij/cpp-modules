@@ -2,7 +2,16 @@
 
 #include <iostream>
 
-ClapTrap::ClapTrap(const std::string &name) : _name(name), _health(10), _energy(10), _damage(0) {
+ClapTrap::ClapTrap() {
+    std::cout << "ClapTrap constructor called" << std::endl;
+}
+
+ClapTrap::ClapTrap(const std::string &name) : _health(10), _energy(10), _damage(0), _name(name) {
+    std::cout << "ClapTrap constructor called" << std::endl;
+}
+
+ClapTrap::ClapTrap(const std::string &name, unsigned int health, unsigned int energy, unsigned int damage)
+    : _health(health), _energy(energy), _damage(damage), _name(name) {
     std::cout << "ClapTrap constructor called" << std::endl;
 }
 

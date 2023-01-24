@@ -2,12 +2,16 @@
 
 #include <iostream>
 
+ScarvTrap::ScarvTrap() {
+    std::cout << "ScarvTrap constructor called" << std::endl;
+}
+
 ScarvTrap::ScarvTrap(const std::string name) : ClapTrap(name, 100, 50, 20) {
     std::cout << "ScarvTrap constructor called" << std::endl;
 }
 
 ScarvTrap::ScarvTrap(const ScarvTrap &other) : ClapTrap(other) {
-    std::cout << "ScarvTrap constructor called" << std::endl;
+    std::cout << "ScarvTrap copy constructor called" << std::endl;
 }
 
 ScarvTrap::~ScarvTrap() {
@@ -23,3 +27,4 @@ ScarvTrap &ScarvTrap::operator=(const ScarvTrap &other) {
 void ScarvTrap::guardGate() const {
     std::cout << _name << " is now in Gate keeper mode" << std::endl;
 }
+

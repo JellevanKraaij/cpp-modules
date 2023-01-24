@@ -2,7 +2,7 @@
 
 #include "ClapTrap.hpp"
 
-class ScarvTrap : public ClapTrap {
+class ScarvTrap : virtual public ClapTrap {
    public:
     ScarvTrap(const std::string name);
     ScarvTrap(const ScarvTrap &other);
@@ -11,4 +11,7 @@ class ScarvTrap : public ClapTrap {
     ScarvTrap &operator=(const ScarvTrap &other);
 
     void guardGate() const;
+
+   protected:
+    ScarvTrap();
 };

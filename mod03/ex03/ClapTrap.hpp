@@ -21,5 +21,6 @@ class ClapTrap {
 
    protected:
     std::string _name;
+    ClapTrap();
     ClapTrap(const std::string &name, unsigned int health, unsigned int energy, unsigned int damage);
 };
