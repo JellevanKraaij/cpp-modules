@@ -13,6 +13,8 @@ class DiamondTrap : public ScarvTrap, public FragTrap {
 
     void whoAmI() const;
 
+    using ScarvTrap::attack;
+
    private:
     std::string _name;
 };

@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+FragTrap::FragTrap() : ClapTrap("", 100, 100, 30) {
+    std::cout << "FragTrap constructor called" << std::endl;
+}
+
 FragTrap::FragTrap(const std::string name) : ClapTrap(name, 100, 100, 30) {
     std::cout << "FragTrap constructor called" << std::endl;
 }
@@ -21,5 +25,5 @@ FragTrap &FragTrap::operator=(const FragTrap &other) {
 }
 
 void FragTrap::highFivesGuys() const {
-    std::cout << _name << " high fives everyone" << std::endl;
+    std::cout << "FragTrap " << _name << " high fives everyone" << std::endl;
 }

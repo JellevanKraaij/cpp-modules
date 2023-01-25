@@ -16,7 +16,6 @@ DiamondTrap::~DiamondTrap() {
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other) {
     std::cout << "DiamondTrap assignment operator called" << std::endl;
-    ClapTrap::operator=(other);
     ScarvTrap::operator=(other);
     FragTrap::operator=(other);
     _name = other._name;

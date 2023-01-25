@@ -4,6 +4,7 @@
 
 class ClapTrap {
    public:
+    ClapTrap();
     ClapTrap(const std::string &name);
     ClapTrap(const ClapTrap &other);
     ~ClapTrap();
@@ -14,13 +15,10 @@ class ClapTrap {
     void takeDamage(unsigned int amount);
     void beRepaired(unsigned int amount);
 
-   private:
+   protected:
+    std::string _name;
     unsigned int _health;
     unsigned int _energy;
     unsigned int _damage;
-
-   protected:
-    std::string _name;
-    ClapTrap();
     ClapTrap(const std::string &name, unsigned int health, unsigned int energy, unsigned int damage);
 };

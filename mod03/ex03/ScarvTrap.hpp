@@ -4,14 +4,14 @@
 
 class ScarvTrap : virtual public ClapTrap {
    public:
+    ScarvTrap();
     ScarvTrap(const std::string name);
     ScarvTrap(const ScarvTrap &other);
     ~ScarvTrap();
 
     ScarvTrap &operator=(const ScarvTrap &other);
 
-    void guardGate() const;
+    void attack(const std::string &target);
 
-   protected:
-    ScarvTrap();
+    void guardGate() const;
 };
