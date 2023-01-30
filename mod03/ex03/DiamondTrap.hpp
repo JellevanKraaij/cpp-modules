@@ -1,10 +1,11 @@
 #pragma once
 
 #include "FragTrap.hpp"
-#include "ScarvTrap.hpp"
+#include "ScavTrap.hpp"
 
-class DiamondTrap : public ScarvTrap, public FragTrap {
+class DiamondTrap : public ScavTrap, public FragTrap {
    public:
+    DiamondTrap();
     DiamondTrap(const std::string name);
     DiamondTrap(const DiamondTrap &other);
     ~DiamondTrap();
@@ -13,7 +14,7 @@ class DiamondTrap : public ScarvTrap, public FragTrap {
 
     void whoAmI() const;
 
-    using ScarvTrap::attack;
+    using ScavTrap::attack;
 
    private:
     std::string _name;

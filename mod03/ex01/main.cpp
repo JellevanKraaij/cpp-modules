@@ -1,9 +1,9 @@
 #include <iostream>
 
-#include "ScarvTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main(void) {
-    ScarvTrap s("scarvy");
+    ScavTrap s("sarvy");
     ClapTrap c("clappy");
 
     std::cout << std::endl;

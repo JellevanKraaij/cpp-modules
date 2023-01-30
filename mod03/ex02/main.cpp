@@ -1,11 +1,11 @@
 #include <iostream>
 
 #include "FragTrap.hpp"
-#include "ScarvTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main(void) {
     ClapTrap c("clappy");
-    ScarvTrap s("scarvy");
+    ScavTrap s("sarvy");
     FragTrap f("fraggy");
 
     std::cout << std::endl;

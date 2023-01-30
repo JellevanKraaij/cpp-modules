@@ -1,4 +1,4 @@
-NAME		=	scarvtrap
+NAME		=	scavtrap
 
 HEADERS		=	$(wildcard *.hpp)
 SRC			=	$(wildcard *.cpp)

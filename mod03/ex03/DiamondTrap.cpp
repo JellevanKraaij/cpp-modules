@@ -2,11 +2,13 @@
 
 #include <iostream>
 
+DiamondTrap::DiamondTrap() : ClapTrap("_clap_name", 100, 50, 30), _name("") {}
+
 DiamondTrap::DiamondTrap(const std::string name) : ClapTrap(name + "_clap_name", 100, 50, 30), _name(name) {
     std::cout << "DiamondTrap constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other), ScarvTrap(other), FragTrap(other), _name(other._name) {
+DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other), ScavTrap(other), FragTrap(other), _name(other._name) {
     std::cout << "DiamondTrap constructor called" << std::endl;
 }
 
@@ -16,7 +18,7 @@ DiamondTrap::~DiamondTrap() {
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other) {
     std::cout << "DiamondTrap assignment operator called" << std::endl;
-    ScarvTrap::operator=(other);
+    ScavTrap::operator=(other);
     FragTrap::operator=(other);
     _name = other._name;
     return (*this);
