@@ -5,6 +5,7 @@ Cat::Cat() : AAnimal("Cat"), _brain(new Brain()) {
 }
 
 Cat::Cat(const Cat &other) {
+    _brain = new Brain();
     std::cout << "Cat copy constructor called" << std::endl;
     *this = other;
 }
