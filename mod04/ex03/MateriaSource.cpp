@@ -20,12 +20,10 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other) {
     if (this == &other)
         return (*this);
     for (int i = 0; i < _maxMaterias; i++) {
-        AMateria *tmp = nullptr;
         if (_learnedMaterias[i] != nullptr) {
-            tmp = _learnedMaterias[i]->clone();
             delete _learnedMaterias[i];
+            _learnedMaterias[i] = other._learnedMaterias[i]->clone();
         }
-        _learnedMaterias[i] = tmp;
     }
     return (*this);
 }

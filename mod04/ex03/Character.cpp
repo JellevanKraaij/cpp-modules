@@ -26,12 +26,10 @@ Character &Character::operator=(const Character &other) {
         return (*this);
     _name = other._name;
     for (int i = 0; i < _maxMaterias; i++) {
-        AMateria *tmp = nullptr;
         if (_materias[i] != nullptr) {
-            tmp = _materias[i]->clone();
             delete _materias[i];
+            _materias[i] = other._materias[i]->clone();
         }
-        _materias[i] = tmp;
     }
     return (*this);
 }
