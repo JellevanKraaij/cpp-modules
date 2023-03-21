@@ -6,7 +6,7 @@ int main() {
     std::cout << "create bureaucrat with a grade that is too high" << std::endl;
     try {
         Bureaucrat test1("test", 0);
-    } catch (const std::exception &e) {
+    } catch (const std::exception& e) {
         std::cout << "caught exception, message: " << e.what() << std::endl;
     }
     std::cout << std::endl;
@@ -14,7 +14,7 @@ int main() {
     std::cout << "create bureaucrat with a grade that is too low" << std::endl;
     try {
         Bureaucrat test1("test", 151);
-    } catch (const std::exception &e) {
+    } catch (const std::exception& e) {
         std::cout << "caught exception, message: " << e.what() << std::endl;
     }
     std::cout << std::endl;
@@ -49,7 +49,7 @@ int main() {
     std::cout << "increment test1 grade above highest grade" << std::endl;
     try {
         test1.incrementGrade();
-    } catch (const std::exception &e) {
+    } catch (const std::exception& e) {
         std::cout << "caught exception, message: " << e.what() << std::endl;
     }
     std::cout << std::endl;
@@ -57,7 +57,7 @@ int main() {
     std::cout << "decrement test2 grade below lowest grade" << std::endl;
     try {
         test2.decrementGrade();
-    } catch (const std::exception &e) {
+    } catch (const std::exception& e) {
         std::cout << "caught exception, message: " << e.what() << std::endl;
     }
     std::cout << std::endl;

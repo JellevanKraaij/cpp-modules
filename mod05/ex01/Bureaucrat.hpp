@@ -2,6 +2,10 @@
 
 #include <string>
 
+class Bureaucrat;
+
+#include "Form.hpp"
+
 class Bureaucrat {
    public:
     Bureaucrat();
@@ -15,6 +19,8 @@ class Bureaucrat {
 
     void incrementGrade();
     void decrementGrade();
+
+    void signForm(Form& form) const;
 
     static bool isGradeTooHigh(int grade);
     static bool isGradeTooLow(int grade);
