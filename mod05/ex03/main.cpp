@@ -1,37 +1,24 @@
 #include <iostream>
 
 #include "Bureaucrat.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main() {
-    ShrubberyCreationForm trees("trees");
+    Intern intern;
 
-    Bureaucrat validBureaucrat("validBureaucrat", 137);
-    Bureaucrat invalidBureaucrat("invalidBureaucrat", 138);
+    AForm *formP = intern.makeForm("presidential pardon", "presidential");
+    AForm *formR = intern.makeForm("robotomy request", "robot");
+    AForm *formS = intern.makeForm("shrubbery creation", "shrubbery");
+    AForm *formI = intern.makeForm("nope", "nope");
 
-    validBureaucrat.executeForm(trees);
+    std::cout << *formP << std::endl;
+    std::cout << *formR << std::endl;
+    std::cout << *formS << std::endl;
 
-    validBureaucrat.signForm(trees);
-    
-    invalidBureaucrat.executeForm(trees);
-    validBureaucrat.executeForm(trees);
+    std::cout << formI << std::endl;
 
-    std::cout << std::endl;
-
-    std::cout << "testing other forms" << std::endl;
-    Bureaucrat sudoCrat("SudoCrat", 1);
-    
-    std::cout << std::endl;
-
-    RobotomyRequestForm robot("robot");
-    robot.beSigned(sudoCrat);
-    robot.execute(sudoCrat);
-
-    std::cout << std::endl;
-
-    PresidentialPardonForm president("president");
-    president.beSigned(sudoCrat);
-    president.execute(sudoCrat);
+    delete formP;
+    delete formR;
+    delete formS;
+    delete formI;
 }
