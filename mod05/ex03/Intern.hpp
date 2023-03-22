@@ -13,12 +13,11 @@ class Intern {
     AForm *makeForm(const std::string &form, const std::string &name);
 
    private:
-		struct CreateLookup
-		{
-			const std::string form;
-         AForm *(*createF)(const std::string &name);
-		};
+    struct CreateLookup {
+        const std::string form;
+        AForm *(*createF)(const std::string &name);
+    };
 
-      static const unsigned int createLookupCnt = 3;
-      static const CreateLookup createLookup[createLookupCnt];
+    static const unsigned int createLookupCnt = 3;
+    static const CreateLookup createLookup[createLookupCnt];
 };

@@ -10,5 +10,5 @@ class PresidentialPardonForm : public AForm {
     PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 
     void execute(const Bureaucrat& bureaucrat) const;
-    static AForm *create(const std::string &name);
+    static AForm* create(const std::string& name);
 };

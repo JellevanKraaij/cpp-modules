@@ -37,6 +37,6 @@ void ShrubberyCreationForm::execute(const Bureaucrat& bureaucrat) const {
     outfile << forest << std::endl;
 }
 
-AForm *ShrubberyCreationForm::create(const std::string &name) {
+AForm* ShrubberyCreationForm::create(const std::string& name) {
     return new ShrubberyCreationForm(name);
 }

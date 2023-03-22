@@ -31,6 +31,6 @@ void RobotomyRequestForm::execute(const Bureaucrat& bureaucrat) const {
     std::cout << getName() << " has been robotomized" << std::endl;
 }
 
-AForm *RobotomyRequestForm::create(const std::string &name) {
+AForm* RobotomyRequestForm::create(const std::string& name) {
     return new RobotomyRequestForm(name);
 }

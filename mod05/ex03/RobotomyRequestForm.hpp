@@ -10,5 +10,5 @@ class RobotomyRequestForm : public AForm {
     RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 
     void execute(const Bureaucrat& bureaucrat) const;
-    static AForm *create(const std::string &name);
+    static AForm* create(const std::string& name);
 };

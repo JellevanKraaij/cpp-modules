@@ -14,7 +14,6 @@ int main() {
     std::cout << *formP << std::endl;
     std::cout << *formR << std::endl;
     std::cout << *formS << std::endl;
-
     std::cout << formI << std::endl;
 
     delete formP;

@@ -1,9 +1,9 @@
 #include <iostream>
 
 #include "Bureaucrat.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main() {
     ShrubberyCreationForm trees("trees");
@@ -14,7 +14,7 @@ int main() {
     validBureaucrat.executeForm(trees);
 
     validBureaucrat.signForm(trees);
-    
+
     invalidBureaucrat.executeForm(trees);
     validBureaucrat.executeForm(trees);
 
@@ -22,7 +22,7 @@ int main() {
 
     std::cout << "testing other forms" << std::endl;
     Bureaucrat sudoCrat("SudoCrat", 1);
-    
+
     std::cout << std::endl;
 
     RobotomyRequestForm robot("robot");
