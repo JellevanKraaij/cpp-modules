@@ -1,10 +1,10 @@
 #include "ScalarConverter.hpp"
 
 #include <exception>
+#include <iomanip>
 #include <iostream>
 #include <limits>
 #include <sstream>
-#include <iomanip>
 
 ScalarConverter::ScalarConverter() {}
 
@@ -39,6 +39,23 @@ void ScalarConverter::convert(const std::string& literal) {
         printFloat(val);
         printDouble(val);
     } else if (charH) {
+        char val = charH;
+        printChar(val);
+        printInt(val);
+        printFloat(val);
+        printDouble(val);
+    } else if (floatH) {
+        float val = floatH;
+        printChar(val);
+        printInt(val);
+        printFloat(val);
+        printDouble(val);
+    } else if (doubleH) {
+        double val = doubleH;
+        printChar(val);
+        printInt(val);
+        printFloat(val);
+        printDouble(val);
     }
 }
 
@@ -116,7 +133,6 @@ void ScalarConverter::printChar(T val) {
             std::cout << charVal;
     } catch (const std::exception& e) {
         std::cout << e.what();
-        return;
     }
     std::cout << std::endl;
 }
@@ -128,7 +144,6 @@ void ScalarConverter::printInt(T val) {
         std::cout << rangeSafeCast<int>(val);
     } catch (const std::exception& e) {
         std::cout << e.what();
-        return;
     }
     std::cout << std::endl;
 }
@@ -137,7 +152,7 @@ template <typename T>
 void ScalarConverter::printFloat(T val) {
     std::cout << "float: ";
     try {
-        std::cout << rangeSafeCast<float>(val) << 'f';
+        std::cout << std::fixed << std::setprecision(1) << rangeSafeCast<float>(val) << 'f';
     } catch (const std::exception& e) {
         std::cout << e.what();
     }
@@ -148,10 +163,9 @@ template <typename T>
 void ScalarConverter::printDouble(T val) {
     std::cout << "double: ";
     try {
-        std::cout << std::setprecision(2) << rangeSafeCast<double>(val);
+        std::cout << std::fixed << std::setprecision(1) << rangeSafeCast<double>(val);
     } catch (const std::exception& e) {
         std::cout << e.what();
-        return;
     }
     std::cout << std::endl;
 }
