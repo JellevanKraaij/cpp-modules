@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+
 #include "ScalarHolder.hpp"
 
 class ScalarConverter {

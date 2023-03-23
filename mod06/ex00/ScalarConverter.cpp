@@ -20,8 +20,6 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
 }
 
 void ScalarConverter::convert(const std::string& literal) {
-    std::cout << "input: '" << literal << '\'' << std::endl;
-
     ScalarHolder<char> charH;
     ScalarHolder<int> intH;
     ScalarHolder<float> floatH;
@@ -56,54 +54,46 @@ void ScalarConverter::convert(const std::string& literal) {
         printInt(val);
         printFloat(val);
         printDouble(val);
+    } else {
+        std::cout << "no possible conversion" << std::endl;
     }
 }
 
 ScalarHolder<char> ScalarConverter::convertChar(const std::string& literal) {
-    if (literal.length() != 1 || !isprint(literal.at(0))) {
-        std::cout << "char convert failed" << std::endl;
+    if (literal.length() != 1 || !isprint(literal.at(0)))
         return (false);
-    }
+
     char value = literal.at(0);
-    std::cout << "char convert success res: " << value << std::endl;
     return (value);
 }
 
 ScalarHolder<int> ScalarConverter::convertInt(const std::string& literal) {
     // stringstream parsing allows single + or - char
-    if (literal.length() == 1 && !isnumber(literal.at(0))) {
-        std::cout << "int convert failed" << std::endl;
+    if (literal.length() == 1 && !isnumber(literal.at(0)))
         return (false);
-    }
 
     std::istringstream stream(literal);
 
     int value;
     stream >> std::noskipws >> value;
 
-    if (!stream.eof() || stream.fail()) {
-        std::cout << "int convert failed" << std::endl;
+    if (!stream.eof() || stream.fail())
         return (false);
-    }
-    std::cout << "int convert success res: " << value << std::endl;
     return (value);
 }
 
 ScalarHolder<float> ScalarConverter::convertFloat(const std::string& literal) {
-    if (literal.empty() || literal.back() != 'f') {
-        std::cout << "float convert failed" << std::endl;
+    if (literal.empty() || literal.back() != 'f')
         return (false);
-    }
+
     std::istringstream stream(std::string(literal.begin(), literal.end() - 1));
 
     float value;
     stream >> std::noskipws >> value;
 
-    if (!stream.eof() || stream.fail()) {
-        std::cout << "float convert failed" << std::endl;
+    if (!stream.eof() || stream.fail())
         return (false);
-    }
-    std::cout << "float convert success res: " << value << std::endl;
+
     return (value);
 }
 
@@ -113,11 +103,8 @@ ScalarHolder<double> ScalarConverter::convertDouble(const std::string& literal) 
     double value;
     stream >> std::noskipws >> value;
 
-    if (!stream.eof() || stream.fail()) {
-        std::cout << "double convert failed" << std::endl;
+    if (!stream.eof() || stream.fail())
         return (false);
-    }
-    std::cout << "double convert success res: " << value << std::endl;
     return (value);
 }
 
@@ -163,7 +150,7 @@ template <typename T>
 void ScalarConverter::printDouble(T val) {
     std::cout << "double: ";
     try {
-        std::cout << std::fixed << std::setprecision(1) << rangeSafeCast<double>(val);
+        std::cout << std::fixed << std::setprecision(1) << rangeSafeCast<double, double>(val);
     } catch (const std::exception& e) {
         std::cout << e.what();
     }
@@ -172,7 +159,7 @@ void ScalarConverter::printDouble(T val) {
 
 template <typename Out, typename In>
 Out ScalarConverter::rangeSafeCast(In val) {
-    if (val < std::numeric_limits<Out>::min() || val > std::numeric_limits<Out>::max()) {
+    if (val < std::numeric_limits<Out>::lowest() || val > std::numeric_limits<Out>::max()) {
         throw std::range_error("impossible");
     }
     return (static_cast<Out>(val));
