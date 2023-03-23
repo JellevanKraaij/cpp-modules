@@ -61,6 +61,7 @@ void Bureaucrat::executeForm(const AForm& form) const {
         form.execute(*this);
     } catch (const AForm::Exception& e) {
         std::cout << "(" << *this << ") could't execute (" << form << ") because (" << e.what() << ")" << std::endl;
+        return;
     }
     std::cout << "(" << *this << ") executed (" << form << ")" << std::endl;
 }

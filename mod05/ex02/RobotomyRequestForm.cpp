@@ -2,9 +2,9 @@
 
 #include <iostream>
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("default", 145, 137) {}
+RobotomyRequestForm::RobotomyRequestForm() : AForm("default", 72, 45) {}
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm(target, 145, 137) {}
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm(target, 72, 45) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm(other) {
     *this = other;

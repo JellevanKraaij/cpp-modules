@@ -2,9 +2,9 @@
 
 #include <iostream>
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("default", 145, 137) {}
+PresidentialPardonForm::PresidentialPardonForm() : AForm("default", 25, 5) {}
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AForm(target, 145, 137) {}
+PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AForm(target, 25, 5) {}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : AForm(other) {
     *this = other;

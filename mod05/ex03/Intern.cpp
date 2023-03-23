@@ -9,7 +9,7 @@
 const Intern::CreateLookup Intern::createLookup[createLookupCnt] = {
     {"presidential pardon", PresidentialPardonForm::create},
     {"robotomy request", RobotomyRequestForm::create},
-    {"shrubbery creation", PresidentialPardonForm::create},
+    {"shrubbery creation", ShrubberyCreationForm::create},
 };
 
 Intern::Intern() {}
