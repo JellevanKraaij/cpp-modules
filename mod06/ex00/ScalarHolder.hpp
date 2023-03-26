@@ -16,7 +16,6 @@ class ScalarHolder {
 
     T getVariable() const;
 
-    operator bool() const;
     operator T() const;
 
    private:

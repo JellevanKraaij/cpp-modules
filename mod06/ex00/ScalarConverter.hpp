@@ -21,15 +21,11 @@ class ScalarConverter {
     static ScalarHolder<float> convertFloat(const std::string& literal);
     static ScalarHolder<double> convertDouble(const std::string& literal);
 
-    template <typename T>
-    static void printChar(T val);
-    template <typename T>
-    static void printInt(T val);
-    template <typename T>
-    static void printFloat(T val);
-    template <typename T>
-    static void printDouble(T val);
+    static void print(ScalarHolder<char> val);
+    static void print(ScalarHolder<int> val);
+    static void print(ScalarHolder<float> val);
+    static void print(ScalarHolder<double> val);
 
     template <typename Out, typename In>
-    static Out rangeSafeCast(In val);
+    static ScalarHolder<Out> rangeSafeCast(ScalarHolder<In> val);
 };

@@ -36,11 +36,6 @@ T ScalarHolder<T>::getVariable() const {
 }
 
 template <typename T>
-ScalarHolder<T>::operator bool() const {
-    return _isValid;
-}
-
-template <typename T>
 ScalarHolder<T>::operator T() const {
     return _variable;
 }

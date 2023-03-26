@@ -1,10 +1,12 @@
 #include "ScalarConverter.hpp"
 
+#include <cctype>
 #include <exception>
 #include <iomanip>
 #include <iostream>
 #include <limits>
 #include <sstream>
+#include <typeinfo>
 
 ScalarConverter::ScalarConverter() {}
 
@@ -25,38 +27,30 @@ void ScalarConverter::convert(const std::string& literal) {
     ScalarHolder<float> floatH;
     ScalarHolder<double> doubleH;
 
-    charH = convertChar(literal);
-    intH = convertInt(literal);
-    floatH = convertFloat(literal);
-    doubleH = convertDouble(literal);
-
-    if (intH) {
-        int val = intH;
-        printChar(val);
-        printInt(val);
-        printFloat(val);
-        printDouble(val);
-    } else if (charH) {
-        char val = charH;
-        printChar(val);
-        printInt(val);
-        printFloat(val);
-        printDouble(val);
-    } else if (floatH) {
-        float val = floatH;
-        printChar(val);
-        printInt(val);
-        printFloat(val);
-        printDouble(val);
-    } else if (doubleH) {
-        double val = doubleH;
-        printChar(val);
-        printInt(val);
-        printFloat(val);
-        printDouble(val);
+    if ((intH = convertInt(literal)).isValid()) {
+        charH = rangeSafeCast<char>(intH);
+        floatH = rangeSafeCast<float>(intH);
+        doubleH = rangeSafeCast<double>(intH);
+    } else if ((charH = convertChar(literal)).isValid()) {
+        intH = rangeSafeCast<int>(charH);
+        floatH = rangeSafeCast<float>(charH);
+        doubleH = rangeSafeCast<double>(charH);
+    } else if ((floatH = convertFloat(literal)).isValid()) {
+        charH = rangeSafeCast<char>(floatH);
+        intH = rangeSafeCast<int>(floatH);
+        doubleH = rangeSafeCast<double>(floatH);
+    } else if ((doubleH = convertDouble(literal)).isValid()) {
+        charH = rangeSafeCast<char>(doubleH);
+        intH = rangeSafeCast<int>(doubleH);
+        floatH = rangeSafeCast<float>(doubleH);
     } else {
         std::cout << "no possible conversion" << std::endl;
+        return;
     }
+    print(charH);
+    print(intH);
+    print(floatH);
+    print(doubleH);
 }
 
 ScalarHolder<char> ScalarConverter::convertChar(const std::string& literal) {
@@ -69,7 +63,7 @@ ScalarHolder<char> ScalarConverter::convertChar(const std::string& literal) {
 
 ScalarHolder<int> ScalarConverter::convertInt(const std::string& literal) {
     // stringstream parsing allows single + or - char
-    if (literal.length() == 1 && !isnumber(literal.at(0)))
+    if (literal.length() == 1 && !std::isdigit(literal.at(0)))
         return (false);
 
     std::istringstream stream(literal);
@@ -83,14 +77,13 @@ ScalarHolder<int> ScalarConverter::convertInt(const std::string& literal) {
 }
 
 ScalarHolder<float> ScalarConverter::convertFloat(const std::string& literal) {
-    if (literal.empty() || literal.back() != 'f')
+    if (literal.empty() || *literal.rbegin() != 'f')
         return (false);
 
     std::istringstream stream(std::string(literal.begin(), literal.end() - 1));
 
     float value;
     stream >> std::noskipws >> value;
-
     if (!stream.eof() || stream.fail())
         return (false);
 
@@ -108,59 +101,53 @@ ScalarHolder<double> ScalarConverter::convertDouble(const std::string& literal) 
     return (value);
 }
 
-template <typename T>
-void ScalarConverter::printChar(T val) {
+void ScalarConverter::print(ScalarHolder<char> val) {
     std::cout << "char: ";
-    try {
-        char charVal;
-        charVal = rangeSafeCast<char>(val);
-        if (!isprint(charVal))
-            std::cout << "Non displayable";
-        else
-            std::cout << charVal;
-    } catch (const std::exception& e) {
-        std::cout << e.what();
+    if (!val.isValid()) {
+        std::cout << "impossible" << std::endl;
+        return;
     }
+    char charVal;
+    charVal = val.getVariable();
+    if (!isprint(charVal))
+        std::cout << "Non displayable";
+    else
+        std::cout << charVal;
     std::cout << std::endl;
 }
 
-template <typename T>
-void ScalarConverter::printInt(T val) {
+void ScalarConverter::print(ScalarHolder<int> val) {
     std::cout << "int: ";
-    try {
-        std::cout << rangeSafeCast<int>(val);
-    } catch (const std::exception& e) {
-        std::cout << e.what();
+    if (!val.isValid()) {
+        std::cout << "impossible" << std::endl;
+        return;
     }
-    std::cout << std::endl;
+    std::cout << val.getVariable() << std::endl;
 }
-
-template <typename T>
-void ScalarConverter::printFloat(T val) {
+void ScalarConverter::print(ScalarHolder<float> val) {
     std::cout << "float: ";
-    try {
-        std::cout << std::fixed << std::setprecision(1) << rangeSafeCast<float>(val) << 'f';
-    } catch (const std::exception& e) {
-        std::cout << e.what();
+    if (!val.isValid()) {
+        std::cout << "impossible" << std::endl;
+        return;
     }
-    std::cout << std::endl;
+    std::cout << std::fixed << std::setprecision(1) << val.getVariable() << 'f' << std::endl;
 }
 
-template <typename T>
-void ScalarConverter::printDouble(T val) {
+void ScalarConverter::print(ScalarHolder<double> val) {
     std::cout << "double: ";
-    try {
-        std::cout << std::fixed << std::setprecision(1) << rangeSafeCast<double, double>(val);
-    } catch (const std::exception& e) {
-        std::cout << e.what();
+    if (!val.isValid()) {
+        std::cout << "impossible" << std::endl;
+        return;
     }
-    std::cout << std::endl;
+    std::cout << std::fixed << std::setprecision(1) << val.getVariable() << std::endl;
 }
 
 template <typename Out, typename In>
-Out ScalarConverter::rangeSafeCast(In val) {
-    if (val < std::numeric_limits<Out>::lowest() || val > std::numeric_limits<Out>::max()) {
-        throw std::range_error("impossible");
+ScalarHolder<Out> ScalarConverter::rangeSafeCast(ScalarHolder<In> val) {
+    if (typeid(Out) == typeid(double) || typeid(Out) == typeid(float))
+        return (static_cast<Out>(val.getVariable()));
+    if (val < std::numeric_limits<Out>::min() || val > std::numeric_limits<Out>::max()) {
+        return (false);
     }
-    return (static_cast<Out>(val));
+    return (static_cast<Out>(val.getVariable()));
 }
