@@ -32,7 +32,24 @@ Base* generate(void) {
 }
 
 void indentify(Base* p) {
-    indentify(*p);
+    std::cout << "Type is: ";
+
+    if (dynamic_cast<A*>(p) != nullptr) {
+        std::cout << 'A' << std::endl;
+        return;
+    }
+    if (dynamic_cast<B*>(p) != nullptr) {
+        std::cout << 'B' << std::endl;
+        return;
+    }
+    if (dynamic_cast<C*>(p) != nullptr) {
+        std::cout << 'C' << std::endl;
+        return;
+    }
+    if (dynamic_cast<Base*>(p) != nullptr) {
+        std::cout << "Base" << std::endl;
+        return;
+    }
 }
 
 void indentify(Base& p) {

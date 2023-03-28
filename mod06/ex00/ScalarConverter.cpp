@@ -146,7 +146,7 @@ template <typename Out, typename In>
 ScalarHolder<Out> ScalarConverter::rangeSafeCast(ScalarHolder<In> val) {
     if (typeid(Out) == typeid(double) || typeid(Out) == typeid(float))
         return (static_cast<Out>(val.getVariable()));
-    if (val < std::numeric_limits<Out>::min() || val > std::numeric_limits<Out>::max()) {
+    if (!(val > std::numeric_limits<Out>::min() && val < std::numeric_limits<Out>::max())) {
         return (false);
     }
     return (static_cast<Out>(val.getVariable()));
