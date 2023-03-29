@@ -10,7 +10,11 @@ void genramdom_iter(T *elem) {
         std::srand(std::time(nullptr));
         init = true;
     }
-    *elem = (std::rand() % 64) + 'A';
+    while (1) {
+        *elem = (std::rand() % 128);
+        if (isprint(*elem))
+            break;
+    }
     std::cout << *elem << ",";
 }
 
