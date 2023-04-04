@@ -1,16 +1,19 @@
 #pragma once
 
-#include <stack>
+#include <deque>
 
-template <typename T>
-class MutantStack : public std::stack<T> {
+template <typename T, typename C = std::deque<T> >
+class MutantStack : public C {
    public:
-	MutantStack();
-	MutantStack(const MutantStack &other);
-	~MutantStack();
+    MutantStack();
+    MutantStack(const MutantStack& other);
+    ~MutantStack();
 
-	MutantStack &operator=(const MutantStack &other);
+    MutantStack& operator=(const MutantStack& other);
 
-   private:
-	
+    void push(const T& value);
+    T& top();
+    void pop();
 };
+
+#include "MutantStack.tpp"
