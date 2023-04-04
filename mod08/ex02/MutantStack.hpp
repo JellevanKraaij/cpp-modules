@@ -1,8 +1,8 @@
 #pragma once
 
-#include <deque>
+#include <stack>
 
-template <typename T, typename C = std::deque<T> >
+template <typename T, typename C = std::stack<T> >
 class MutantStack : public C {
    public:
     MutantStack();
@@ -11,9 +11,10 @@ class MutantStack : public C {
 
     MutantStack& operator=(const MutantStack& other);
 
-    void push(const T& value);
-    T& top();
-    void pop();
+    typedef typename C::container_type::iterator iterator;
+
+    iterator begin();
+    iterator end();
 };
 
 #include "MutantStack.tpp"

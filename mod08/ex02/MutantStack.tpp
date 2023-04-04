@@ -15,16 +15,11 @@ MutantStack<T, C>& MutantStack<T, C>::operator=(const MutantStack& other) {
 }
 
 template <typename T, typename C>
-void MutantStack<T, C>::push(const T& value) {
-    C::push_back(value);
+typename MutantStack<T, C>::iterator MutantStack<T, C>::begin() {
+    return C::c.begin();
 }
 
 template <typename T, typename C>
-T& MutantStack<T, C>::top() {
-    return (std::deque<T>::back());
-}
-
-template <typename T, typename C>
-void MutantStack<T, C>::pop() {
-    C::pop_back();
+typename MutantStack<T, C>::iterator MutantStack<T, C>::end() {
+    return C::c.end();
 }
