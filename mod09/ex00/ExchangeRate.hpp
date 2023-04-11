@@ -11,14 +11,14 @@ class ExchangeRate {
     ExchangeRate(const ExchangeRate &other);
     ~ExchangeRate();
 
-    bool parseDatabase(std::istream &input);
+    bool loadDatabase(std::istream &input);
 
     ExchangeRate &operator=(const ExchangeRate &other);
-	float getRate(const std::string &date) const;
-	bool empty() const;
+    float getRate(const std::string &date) const;
+    static bool isValideDate(const std::string &date);
+    bool empty() const;
 
    private:
     std::map<std::string, float> _data;
     bool parsePushLine(const std::string &line);
-    bool isValideDate(const std::string &date) const;
 };
