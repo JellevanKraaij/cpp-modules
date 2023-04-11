@@ -1,19 +1,19 @@
-#include "ExchangeRate.hpp"
+#include "BitcoinExchange.hpp"
 
 #include <cstdio>
 #include <iostream>
 #include <sstream>
 #include <string>
 
-ExchangeRate::ExchangeRate() {}
+BitcoinExchange::BitcoinExchange() {}
 
-ExchangeRate::ExchangeRate(const ExchangeRate &other) {
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) {
     *this = other;
 }
 
-ExchangeRate::~ExchangeRate() {}
+BitcoinExchange::~BitcoinExchange() {}
 
-ExchangeRate &ExchangeRate::operator=(const ExchangeRate &other) {
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
     if (this == &other)
         return (*this);
 
@@ -21,7 +21,7 @@ ExchangeRate &ExchangeRate::operator=(const ExchangeRate &other) {
     return (*this);
 }
 
-bool ExchangeRate::loadDatabase(std::istream &input) {
+bool BitcoinExchange::loadDatabase(std::istream &input) {
     std::string line;
 
     std::getline(input, line);
@@ -37,9 +37,9 @@ bool ExchangeRate::loadDatabase(std::istream &input) {
     return (true);
 }
 
-bool ExchangeRate::parsePushLine(const std::string &line) {
+bool BitcoinExchange::parsePushLine(const std::string &line) {
     std::string date;
-    std::string exchangeRate;
+    std::string BitcoinExchange;
 
     size_t pos = line.find(',');
     if (pos == std::string::npos)
@@ -48,16 +48,16 @@ bool ExchangeRate::parsePushLine(const std::string &line) {
     if (!isValideDate(date))
         return (false);
 
-    exchangeRate = line.substr(pos + 1);
-    std::istringstream exchangeRateStream(exchangeRate);
+    BitcoinExchange = line.substr(pos + 1);
+    std::istringstream BitcoinExchangeStream(BitcoinExchange);
     float rate;
-    if (!(exchangeRateStream >> rate) || !exchangeRateStream.eof())
+    if (!(BitcoinExchangeStream >> rate) || !BitcoinExchangeStream.eof())
         return (false);
     _data[date] = rate;
     return (true);
 }
 
-bool ExchangeRate::isValideDate(const std::string &date) {
+bool BitcoinExchange::isValideDate(const std::string &date) {
     tm tm;
     const char *res = strptime(date.c_str(), "%Y-%m-%d", &tm);
     if (res == NULL)
@@ -67,7 +67,7 @@ bool ExchangeRate::isValideDate(const std::string &date) {
     return (true);
 }
 
-float ExchangeRate::getRate(const std::string &date) const {
+float BitcoinExchange::getRate(const std::string &date) const {
     if (_data.empty())
         throw std::runtime_error("no data");
     std::map<std::string, float>::const_iterator it = _data.lower_bound(date);
@@ -81,6 +81,6 @@ float ExchangeRate::getRate(const std::string &date) const {
     return (it->second);
 }
 
-bool ExchangeRate::empty() const {
+bool BitcoinExchange::empty() const {
     return (_data.empty());
 }

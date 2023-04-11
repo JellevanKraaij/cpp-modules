@@ -5,15 +5,15 @@
 #include <map>
 #include <utility>
 
-class ExchangeRate {
+class BitcoinExchange {
    public:
-    ExchangeRate();
-    ExchangeRate(const ExchangeRate &other);
-    ~ExchangeRate();
+    BitcoinExchange();
+    BitcoinExchange(const BitcoinExchange &other);
+    ~BitcoinExchange();
 
     bool loadDatabase(std::istream &input);
 
-    ExchangeRate &operator=(const ExchangeRate &other);
+    BitcoinExchange &operator=(const BitcoinExchange &other);
     float getRate(const std::string &date) const;
     static bool isValideDate(const std::string &date);
     bool empty() const;
