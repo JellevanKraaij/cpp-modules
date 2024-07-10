@@ -2,6 +2,9 @@
 #include <deque>
 #include <list>
 #include <cstdlib>
+#
+
+#include "PmergeMe.hpp"
 
 int main(int argc, char** argv) {
     if (argc < 2) {
@@ -29,5 +32,23 @@ int main(int argc, char** argv) {
 		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
+
+	mergeSort(dq);
+	mergeSort(li);
+
+	std::cout << "After sorting" << std::endl;
+
+	std::cout << "deque: ";
+	for (std::deque<int>::iterator it = dq.begin(); it != dq.end(); ++it) {
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
+
+	std::cout << "list: ";
+	for (std::list<int>::iterator it = li.begin(); it != li.end(); ++it) {
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
+
 	return 0;
 }
