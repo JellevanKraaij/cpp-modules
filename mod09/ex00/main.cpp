@@ -1,13 +1,17 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <cstdlib>
 
 #include "BitcoinExchange.hpp"
 
 BitcoinExchange prepareBitcoinExchange(const std::string &filename) {
     BitcoinExchange btcExchange;
 
-    std::ifstream database(filename);
+    std::ifstream database;
+
+    database.open(filename.c_str());
+
     if (!database) {
         std::cout << "Error: could not open database" << std::endl;
         exit(EXIT_FAILURE);

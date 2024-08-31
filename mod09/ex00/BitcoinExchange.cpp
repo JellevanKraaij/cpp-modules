@@ -76,7 +76,7 @@ float BitcoinExchange::getRate(const std::string &date) const {
     if (it->first > date) {
         if (it == _data.begin())
             return (it->second);
-        return (std::prev(it)->second);
+        return ((--it)->second);
     }
     return (it->second);
 }

@@ -4,6 +4,8 @@ DEPS		=	$(wildcard *.hpp) $(wildcard *.tpp)
 SRC			=	$(wildcard *.cpp)
 OBJ			=	$(SRC:.cpp=.o)
 
+CXX			=	c++
+
 CXXFLAGS	=	-Wall -Werror -Wextra -std=c++98 -fsanitize=address -g
 
 all: $(NAME)
