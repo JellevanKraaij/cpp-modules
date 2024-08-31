@@ -24,9 +24,14 @@ int main(int argc, char** argv) {
     }
 
     std::cout << "Before: " << std::endl;
-    for (std::deque<int>::iterator it = dq.begin(); it != dq.end(); ++it) {
+    std::deque<int>::iterator it = dq.begin();
+    for (size_t i = 0; i < 20 && it != dq.end(); ++i, ++it) {
         std::cout << *it << " ";
     }
+    if (it != dq.end()) {
+        std::cout << "[...]";
+    }
+
     std::cout << std::endl;
 
     std::list<int> check_list = li;
@@ -50,8 +55,12 @@ int main(int argc, char** argv) {
 
     std::cout << "After: " << std::endl;
 
-    for (std::deque<int>::iterator it = dq.begin(); it != dq.end(); ++it) {
+    it = dq.begin();
+    for (size_t i = 0; i < 20 && it != dq.end(); ++i, ++it) {
         std::cout << *it << " ";
+    }
+    if (it != dq.end()) {
+        std::cout << "[...]";
     }
     std::cout << std::endl;
 
