@@ -2,7 +2,6 @@
 #include <deque>
 #include <list>
 #include <cstdlib>
-#
 
 #include "PmergeMe.hpp"
 
@@ -22,10 +21,11 @@ int main(int argc, char** argv) {
 		dq.push_back(num);
 		li.push_back(num);
 	}
-	std::cout << "deque: ";
-	for (std::deque<int>::iterator it = dq.begin(); it != dq.end(); ++it) {
-		std::cout << *it << " ";
-	}
+
+	// std::cout << "deque: ";
+	// for (std::deque<int>::iterator it = dq.begin(); it != dq.end(); ++it) {
+	// 	std::cout << *it << " ";
+	// }
 	std::cout << std::endl;
 	std::cout << "list: ";
 	for (std::list<int>::iterator it = li.begin(); it != li.end(); ++it) {
@@ -33,16 +33,27 @@ int main(int argc, char** argv) {
 	}
 	std::cout << std::endl;
 
-	mergeSort(dq);
+	// mergeSort(dq);
+
+	std::list<int> li2 = li;
+
+	li2.sort();
 	mergeSort(li);
+	if (li == li2) {
+		std::cout << "std::list is sorted" << std::endl;
+	} else {
+		std::cout << "std::list is not sorted" << std::endl;
+		exit(1);
+	}
+
 
 	std::cout << "After sorting" << std::endl;
 
-	std::cout << "deque: ";
-	for (std::deque<int>::iterator it = dq.begin(); it != dq.end(); ++it) {
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
+	// std::cout << "deque: ";
+	// for (std::deque<int>::iterator it = dq.begin(); it != dq.end(); ++it) {
+	// 	std::cout << *it << " ";
+	// }
+	// std::cout << std::endl;
 
 	std::cout << "list: ";
 	for (std::list<int>::iterator it = li.begin(); it != li.end(); ++it) {
