@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <ctime>
 #include <deque>
 #include <iostream>
 #include <list>
@@ -22,46 +23,47 @@ int main(int argc, char** argv) {
         li.push_back(num);
     }
 
-    std::cout << "Jacob sequence: ";
-    for (size_t i = 0; i < 10; ++i)
-        std::cout << jacobsthal(i) << " ";
-    std::cout << std::endl;
-
-    // std::cout << "deque: ";
-    // for (std::deque<int>::iterator it = dq.begin(); it != dq.end(); ++it) {
-    // 	std::cout << *it << " ";
-    // }
-    std::cout << std::endl;
-    std::cout << "list: ";
-    for (std::list<int>::iterator it = li.begin(); it != li.end(); ++it) {
+    std::cout << "Before: " << std::endl;
+    for (std::deque<int>::iterator it = dq.begin(); it != dq.end(); ++it) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
 
-    // mergeSort(dq);
+    std::list<int> check_list = li;
+    std::deque<int> check_deque = dq;
 
-    std::list<int> li2 = li;
+    // cpp98
+    std::clock_t t1, t2;
+    double listTime, dequeTime;
 
-    li2.sort();
-    mergeSort(li);
-    std::cout << "After sorting" << std::endl;
+    t1 = std::clock();
+    PmergeMe<std::list, int>::mergeSort(li);
+    t2 = std::clock();
 
-    // std::cout << "deque: ";
-    // for (std::deque<int>::iterator it = dq.begin(); it != dq.end(); ++it) {
-    // 	std::cout << *it << " ";
-    // }
-    // std::cout << std::endl;
+    listTime = (t2 - t1) / (double)CLOCKS_PER_SEC;
 
-    std::cout << "list: ";
-    for (std::list<int>::iterator it = li.begin(); it != li.end(); ++it) {
+    t1 = std::clock();
+    PmergeMe<std::deque, int>::mergeSort(dq);
+    t2 = std::clock();
+
+    dequeTime = (t2 - t1) / (double)CLOCKS_PER_SEC;
+
+    std::cout << "After: " << std::endl;
+
+    for (std::deque<int>::iterator it = dq.begin(); it != dq.end(); ++it) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
 
-    if (li != li2) {
-        std::cout << "std::list is not sorted" << std::endl;
+    check_list.sort();
+    std::sort(check_deque.begin(), check_deque.end());
+    if (li != check_list || dq != check_deque) {
+        std::cout << "Error: result is not sorted correctly" << std::endl;
         return 1;
     }
+
+    std::cout << "Time to process a range of " << li.size() << " elements with std::list : " << listTime * 1000 << " ms" << std::endl;
+    std::cout << "Time to process a range of " << dq.size() << " elements with std::deque : " << dequeTime * 1000 << " ms" << std::endl;
 
     return 0;
 }
